@@ -18,7 +18,6 @@
 		<OutputPath>..\Build\</OutputPath>
 		<AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
 		<StartupObject>GumpStudio.GumpDesignerMain</StartupObject>
-		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 	  <PlatformTarget>AnyCPU</PlatformTarget>
