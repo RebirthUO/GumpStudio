@@ -29,7 +29,7 @@ jobs:
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
-      run: MSBuild.exe -c Release
+      run: msbuild GumpStudio.sln
       
     - name: Test
       run: dir
