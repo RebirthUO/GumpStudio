@@ -133,13 +133,14 @@ namespace GumpStudio.Elements
 		public string ToCSharpString()
 		{
 			var buttonName = $"(int)Switches.{Name.Replace(" ", String.Empty)}";
+			var isChecked = Checked ? "true" : "false";
 
 			if (this is RadioElement)
 			{
-				return $"AddRadio({X}, {Y}, {UnCheckedID}, {CheckedID}, {Checked}, {buttonName}); // {Name}";
+				return $"AddRadio({X}, {Y}, {UnCheckedID}, {CheckedID}, {isChecked}, {buttonName}); // {Name}";
 			}
 
-			return $"AddCheck({X}, {Y}, {UnCheckedID}, {CheckedID}, {Checked}, {buttonName}); // {Name}";
+			return $"AddCheck({X}, {Y}, {UnCheckedID}, {CheckedID}, {isChecked}, {buttonName}); // {Name}";
 		}
 	}
 }

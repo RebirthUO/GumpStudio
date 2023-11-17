@@ -165,12 +165,16 @@ namespace GumpStudio.Elements
 
 		public string ToCSharpString()
 		{
+			var showBackGround = ShowBackground ? "true" : "false";
+			var showScrollbar = ShowBackground ? "true" : "false";
+			var html = HTML ?? "String.Empty";
+			
 			if (TextType == HTMLElementType.Localized)
 			{
-				return $"AddHtmlLocalized({X}, {Y}, {Width}, {Height}, {CliLocID}, {ShowBackground}, {ShowScrollbar}); // {StringList.ENU.GetString(CliLocID)}";
+				return $"AddHtmlLocalized({X}, {Y}, {Width}, {Height}, {CliLocID}, {showBackGround}, {showScrollbar}); // {StringList.ENU.GetString(CliLocID)}";
 			}
 
-			return $"AddHtml({X}, {Y}, {Width}, {Height}, \"{HTML.Replace("\"", "\\\"")}\", {ShowBackground}, {ShowScrollbar});";
+			return $"AddHtml({X}, {Y}, {Width}, {Height}, \"{html.Replace("\"", "\\\"")}\", {showBackGround}, {showScrollbar});";
 		}
 	}
 }
