@@ -101,6 +101,9 @@ namespace GumpStudio.Elements
 			}
 		}
 
+
+		public bool Locked { get; set; }
+		
 		public event RepaintEventHandler Repaint;
 		public event UpdateParentEventHandler UpdateParent;
 
@@ -134,24 +137,20 @@ namespace GumpStudio.Elements
 			_Size = (Size)info.GetValue("Size", typeof(Size));
 			_Parent = (GroupElement)info.GetValue("Parent", typeof(GroupElement));
 
-			if (version >= 2)
-			{
-				_Comment = info.GetString("Comment");
-			}
-			else
-			{
-				_Comment = String.Empty;
-			}
+			Locked = version >= 3 && info.GetBoolean("Locked");
+			
+			_Comment = version >= 2 ? info.GetString("Comment") : String.Empty;
 		}
 
 		public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
-			info.AddValue("BaseElementVersion", 2);
+			info.AddValue("BaseElementVersion", 3);
 			info.AddValue("Name", _Name);
 			info.AddValue("Location", _Location);
 			info.AddValue("Size", _Size);
 			info.AddValue("Parent", _Parent);
 			info.AddValue("Comment", _Comment);
+			info.AddValue("Locked", Locked);
 		}
 
 		public virtual void AddContextMenus(ref MenuItem groupMenu, ref MenuItem positionMenu, ref MenuItem orderMenu, ref MenuItem miscMenu)

@@ -1509,6 +1509,15 @@ namespace GumpStudio.Forms
 			{
 				miscMenu.Enabled = false;
 			}
+			
+			if (element != null)
+			{
+				var refElement = element;
+				var lockElement = new MenuItem(element.Locked ? "Unlock" : "Lock");
+				lockElement.Click += (a, b) => refElement.Locked = !refElement.Locked;
+				menu.MenuItems.Add(new MenuItem("-"));
+				menu.MenuItems.Add(lockElement);
+			}
 		}
 
 		public BaseElement GetLastSelectedControl()
@@ -2054,7 +2063,12 @@ namespace GumpStudio.Forms
 			{
 				point.Offset(_AnchorOffset.Width, _AnchorOffset.Height);
 			}
-
+			
+			if(ActiveElement != null && ActiveElement.Locked && _MoveMode == MoveType.Move)
+			{
+				return;
+			}
+			
 			var args = new MouseMovementEventArgs(element)
 			{
 				Keys = ModifierKeys,
