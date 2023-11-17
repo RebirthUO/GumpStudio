@@ -1,7 +1,10 @@
 name: Build Gump Studio
 
 on:
-  workflow_dispatch: # on button click
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
 
